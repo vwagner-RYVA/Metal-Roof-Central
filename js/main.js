@@ -46,6 +46,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // Buttons with data-prefill start the contact message for the visitor
+  // (never overwrites anything they've already typed).
+  document.querySelectorAll('[data-prefill]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var messageField = document.getElementById('message');
+      if (messageField && !messageField.value.trim()) {
+        messageField.value = btn.getAttribute('data-prefill');
+      }
+    });
+  });
+
   // Contact form — builds a mailto so it works with zero backend/hosting.
   // Once real hosting is chosen, swap this handler for a form-processing
   // service or serverless function and remove the mailto fallback.
