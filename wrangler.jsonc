@@ -1,9 +1,8 @@
 {
-  // Cloudflare Workers static assets: serves everything in ./public, no Worker script needed.
-  // The "name" must match the Worker name in the Cloudflare dashboard.
+  // Cloudflare Pages project "metal-roof-central" (connected to this GitHub repo).
+  // Only ./public is published, so dev files like serve.ps1 and .claude/ are never served.
+  // The "name" must match the Pages project name in the Cloudflare dashboard.
   "name": "metal-roof-central",
-  "compatibility_date": "2026-10-08",
-  "assets": {
-    "directory": "./public"
-  }
+  "pages_build_output_dir": "./public",
+  "compatibility_date": "2026-10-08"
 }
