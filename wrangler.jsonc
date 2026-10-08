@@ -1,0 +1,9 @@
+{
+  // Cloudflare Workers static assets: serves everything in ./public, no Worker script needed.
+  // The "name" must match the Worker name in the Cloudflare dashboard.
+  "name": "metal-roof-central",
+  "compatibility_date": "2026-10-08",
+  "assets": {
+    "directory": "./public"
+  }
+}
