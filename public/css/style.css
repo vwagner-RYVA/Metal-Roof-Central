@@ -579,34 +579,11 @@ section[id] { scroll-margin-top: var(--header-h); }
 }
 .price-foot { margin: 18px 0 28px; font-size: 0.85rem; }
 
-/* Commitment
+/* About
    ========================================================================== */
-.steps {
-  list-style: none;
-  margin: 0 0 clamp(64px, 8vw, 104px);
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--ink);
-}
-.step { padding: 32px clamp(20px, 3vw, 40px) 8px 0; }
-.step + .step { border-left: 1px solid var(--line); padding-left: clamp(20px, 3vw, 40px); }
-.step-num {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: 300;
-  font-size: 2.8rem;
-  line-height: 1;
-  color: var(--red);
-  font-variant-numeric: lining-nums;
-  margin-bottom: 14px;
-}
-.step h3 { font-size: 1.7rem; margin-bottom: 0.3em; }
-.step p { margin: 0; font-size: 0.97rem; }
-
 .audience {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(28px, 4vw, 60px);
   border-top: 1px solid var(--ink);
   padding-top: 32px;
@@ -871,11 +848,7 @@ textarea:-webkit-autofill {
   .note-panel,
   .care-grid,
   .contact-grid { grid-template-columns: 1fr; }
-  .steps,
   .audience { grid-template-columns: 1fr; }
-  .step,
-  .step + .step { padding: 28px 0; border-left: 0; }
-  .step + .step { border-top: 1px solid var(--line); }
   .footer-grid { grid-template-columns: 1fr; }
 }
 
