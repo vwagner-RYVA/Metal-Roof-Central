@@ -4,3 +4,6 @@ metal-roof-dealer-intake-form.pdf
 # OS junk
 .DS_Store
 Thumbs.db
+
+# Wrangler local cache
+.wrangler/
