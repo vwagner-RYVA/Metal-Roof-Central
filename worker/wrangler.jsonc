@@ -1,0 +1,12 @@
+{
+  // Cloudflare Worker "metal-roof-central" serving the static site in ../public (no Worker script needed).
+  // In Workers Builds set Root directory to "worker". The "name" must match the Worker name in the dashboard.
+  // The Pages project uses the wrangler.jsonc in the repo root; this file is separate so neither breaks the other.
+  "name": "metal-roof-central",
+  "compatibility_date": "2026-10-08",
+  "assets": {
+    "directory": "../public",
+    // Unknown URLs return a real 404 using public/404.html (instead of the homepage with a 200).
+    "not_found_handling": "404-page"
+  }
+}
