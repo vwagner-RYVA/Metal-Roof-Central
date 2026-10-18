@@ -256,7 +256,10 @@ p { margin: 0 0 1.1em; color: var(--text-muted); }
 .hero h1 em {
   font-weight: 300;
   color: var(--platinum);
-  background: linear-gradient(100deg, #f6f7f8 0%, #a9adb3 48%, #eceef0 100%);
+  /* Light-to-silver at rest; a bright band sits off to the right, ready for the one-time sheen. */
+  background: linear-gradient(100deg, #e9ebee 0%, #a9adb3 40%, #ffffff 50%, #a9adb3 60%, #a9adb3 100%);
+  background-size: 250% 100%;
+  background-position: 0 0;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -830,6 +833,101 @@ textarea:-webkit-autofill {
   color: var(--silver);
 }
 
+/* Motion & polish
+   Restrained on purpose. Everything under .motion is skipped for visitors who
+   prefer reduced motion, and content is fully visible without JavaScript.
+   ========================================================================== */
+::selection { background: var(--red); color: var(--white); }
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -80px;
+  z-index: 200;
+  padding: 12px 20px;
+  background: var(--white);
+  color: var(--ink);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 12px; }
+
+.site-header { transition: background 0.3s ease; }
+.site-header.scrolled { background: rgba(11, 11, 12, 0.985); }
+.scroll-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--red-light);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+.btn { transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease; }
+
+/* Hero entrance: staggered rise, then one metallic sheen across the italic line */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes sheen {
+  from { background-position: 100% 0; }
+  to { background-position: 0 0; }
+}
+.motion .hero-inner > * { animation: rise 1s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.motion .hero-inner > :nth-child(1) { animation-delay: 0.05s; }
+.motion .hero-inner > :nth-child(2) { animation-delay: 0.18s; }
+.motion .hero-inner > :nth-child(3) { animation-delay: 0.34s; }
+.motion .hero-inner > :nth-child(4) { animation-delay: 0.5s; }
+.motion .hero-meta { animation: rise 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.75s both; }
+.motion .hero h1 em { animation: sheen 2.4s cubic-bezier(0.4, 0, 0.2, 1) 1.1s both; }
+
+/* Scroll reveals */
+.motion .reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.motion .reveal.in { opacity: 1; transform: none; }
+.motion .section-head .eyebrow::before {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.3s;
+}
+.motion .section-head.in .eyebrow::before { transform: scaleX(1); }
+
+/* Hover details */
+.profile-art { transition: transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.7s ease; }
+.profile h3 {
+  display: inline-block;
+  padding-bottom: 4px;
+  background: linear-gradient(var(--red), var(--red)) 0 100% / 0 1px no-repeat;
+  transition: background-size 0.55s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.stat { transition: color 0.5s ease; }
+@media (hover: hover) {
+  .profile:hover .profile-art { transform: translateY(-6px); box-shadow: 0 28px 44px -28px rgba(0, 0, 0, 0.55); }
+  .profile:hover h3 { background-size: 100% 1px; }
+  .spec:hover .stat { color: var(--red); }
+  .btn-primary:hover { transform: translateY(-1px); }
+}
+
+@media print {
+  .motion .reveal,
+  .motion .hero-inner > *,
+  .motion .hero-meta { opacity: 1 !important; transform: none !important; animation: none !important; }
+}
+
 /* Responsive
    ========================================================================== */
 @media (max-width: 900px) {
@@ -866,5 +964,9 @@ textarea:-webkit-autofill {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
 }

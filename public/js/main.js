@@ -10,6 +10,54 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // Header state and the thin scroll-progress line
+  var header = document.querySelector('.site-header');
+  var progressBar = document.querySelector('.scroll-progress');
+  var scrollTicking = false;
+  function updateScroll() {
+    var doc = document.documentElement;
+    var max = doc.scrollHeight - doc.clientHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    if (progressBar) progressBar.style.transform = 'scaleX(' + p + ')';
+    if (header) header.classList.toggle('scrolled', window.scrollY > 8);
+    scrollTicking = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!scrollTicking) {
+      scrollTicking = true;
+      window.requestAnimationFrame(updateScroll);
+    }
+  }, { passive: true });
+  window.addEventListener('resize', updateScroll);
+  updateScroll();
+
+  // Scroll reveals. The "motion" class is set in <head> only when the visitor
+  // allows motion, so without it everything stays visible and static.
+  if (document.documentElement.classList.contains('motion')) {
+    var revealTargets = document.querySelectorAll(
+      '.section-head, .profile, .collection-note, .spec, .fine-print, .motive, .split > *, ' +
+      '.note-panel, .care-includes, .pricing-panel, .audience article, .invite, .values-line, ' +
+      '.faq-list, #contact-form, .contact-details'
+    );
+    var revealObserver = new IntersectionObserver(function (entries) {
+      var n = 0;
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        // Stagger only the items that arrive in the same moment (e.g. a row of cards).
+        el.style.transitionDelay = (Math.min(n, 4) * 90) + 'ms';
+        el.classList.add('in');
+        revealObserver.unobserve(el);
+        n++;
+        window.setTimeout(function () { el.style.transitionDelay = ''; }, 1500);
+      });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+    revealTargets.forEach(function (el) {
+      el.classList.add('reveal');
+      revealObserver.observe(el);
+    });
+  }
+
   // Highlight the nav link for whichever section is in view (single-page site)
   var sections = Array.prototype.slice.call(document.querySelectorAll('main > section[id]'));
   var navLinks = document.querySelectorAll('.nav-links a[href^="#"]');

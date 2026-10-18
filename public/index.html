@@ -15,8 +15,27 @@
 <meta property="og:title" content="Metal Roof Central | Designer Modular Metal Roofing Distributor, Florida">
 <meta property="og:description" content="Designer modular metal roofing of the highest quality. 50-year transferable warranty, hurricane zone approved, installed by state-certified contractors.">
 <meta property="og:url" content="https://www.metalroofcentral.com/">
-<meta property="og:image" content="https://www.metalroofcentral.com/images/og-cover.jpg">
+<meta property="og:image" content="https://www.metalroofcentral.com/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Metal Roof Central: designer metal roofing that lasts.">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.metalroofcentral.com/og-cover.png">
+
+<!-- Icons and browser chrome -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0b0b0c">
+
+<!-- Motion is opt-in: skipped for visitors who prefer reduced motion or browsers without IntersectionObserver -->
+<script>
+(function (root) {
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('IntersectionObserver' in window)) return;
+  root.classList.add('motion');
+})(document.documentElement);
+</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -131,7 +150,10 @@
 </head>
 <body>
 
+<a class="skip-link" href="#main">Skip to content</a>
+
 <header class="site-header">
+  <div class="scroll-progress" aria-hidden="true"></div>
   <div class="container nav">
     <a href="#top" class="logo" aria-label="Metal Roof Central, back to top">Metal Roof <span>Central</span></a>
     <button class="nav-toggle" aria-label="Toggle navigation">
@@ -148,7 +170,7 @@
   </div>
 </header>
 
-<main>
+<main id="main">
 
 <!-- ======================================================================
      HERO
