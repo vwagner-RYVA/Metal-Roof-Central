@@ -55,7 +55,21 @@
   "telephone": "+1-321-290-6242",
   "founder": { "@type": "Person", "name": "Ryan J. Morse" },
   "areaServed": { "@type": "State", "name": "Florida" },
-  "hasOfferCatalog": {
+  "hasOfferCatalog": [
+  {
+    "@type": "OfferCatalog",
+    "name": "Roofing profiles",
+    "itemListElement": [
+      { "@type": "Product", "name": "Mistral", "brand": { "@type": "Brand", "name": "BTR Systems" }, "category": "Stone-chip coated steel roofing", "description": "A symmetrical, softly waved profile with a Mediterranean character. Cover width 50 in, minimum pitch 14 degrees. Colors: Onyx, Amber, Hematite, Jaspis, Ruby." },
+      { "@type": "Product", "name": "Blizzard", "brand": { "@type": "Brand", "name": "BTR Systems" }, "category": "Stone-chip coated steel roofing", "description": "A refined stone-chip tile profile with a 47 in cover width. Colors: Onyx, Amber, Hematite, Jaspis, Ruby." },
+      { "@type": "Product", "name": "Storm", "brand": { "@type": "Brand", "name": "BTR Systems" }, "category": "Stone-chip coated steel roofing", "description": "Deep, irregular texture inspired by aspen wood shingles. Cover width 51.7 in, minimum pitch 14 degrees. Colors: Onyx, Amber, Jade, Hematite." },
+      { "@type": "Product", "name": "Polar", "brand": { "@type": "Brand", "name": "BTR Systems" }, "category": "Stone-chip coated steel roofing", "description": "The look of a bitumen shingle in stone-chip steel, for roofs and facades, with concealed fasteners. Colors: Onyx, Amber, Hematite, Jade, Bronzite." },
+      { "@type": "Product", "name": "Tremblant", "brand": { "@type": "Brand", "name": "BTR Systems" }, "category": "Painted steel tile roofing", "description": "Classic clay tile reinterpreted in solid steel with a lower profile. Panel 47 x 27.5 in, 11.5 pieces per square." },
+      { "@type": "Product", "name": "Estima", "brand": { "@type": "Brand", "name": "BTR Systems" }, "category": "Painted steel tile roofing", "description": "A symmetrical flat tile in a wide choice of colors and coatings. Panel 47 x 27.5 in, 11.5 pieces per square." },
+      { "@type": "Product", "name": "Enigma", "brand": { "@type": "Brand", "name": "BTR Systems" }, "category": "Painted steel tile roofing", "description": "A symmetrical steel tile with an embossed, stiffened profile, striking in black and brick tones. Panel 46 x 27.5 in, 11.5 pieces per square." }
+    ]
+  },
+  {
     "@type": "OfferCatalog",
     "name": "Roof tune-ups (Brevard County, FL)",
     "itemListElement": [
@@ -63,7 +77,8 @@
       { "@type": "Offer", "name": "Roof tune-up, 3,000–5,000 sq. ft.", "price": "699", "priceCurrency": "USD", "areaServed": { "@type": "AdministrativeArea", "name": "Brevard County, Florida" }, "itemOffered": { "@type": "Service", "name": "Roof tune-up" } },
       { "@type": "Offer", "name": "Roof tune-up, 5,000–9,000 sq. ft.", "price": "899", "priceCurrency": "USD", "areaServed": { "@type": "AdministrativeArea", "name": "Brevard County, Florida" }, "itemOffered": { "@type": "Service", "name": "Roof tune-up" } }
     ]
-  },
+  }
+  ],
   "sameAs": []
 }
 </script>
@@ -209,33 +224,190 @@
       </div>
     </div>
 
-    <!-- EDIT: When project photography is ready, replace each .profile-art div with <img src="images/your-photo.jpg" alt="..."> -->
-    <div class="profile-grid">
-      <figure class="profile">
-        <div class="profile-art art-shingle" role="img" aria-label="Illustration of the metal shingle profile"></div>
-        <figcaption>
-          <h3>Metal Shingle</h3>
-          <p>Available in a wide range of colors.</p>
-        </figcaption>
-      </figure>
-      <figure class="profile">
-        <div class="profile-art art-shake" role="img" aria-label="Illustration of the metal shake profile"></div>
-        <figcaption>
-          <h3>Shake</h3>
-          <p>Available in a wide range of colors.</p>
-        </figcaption>
-      </figure>
-      <figure class="profile">
-        <div class="profile-art art-tile" role="img" aria-label="Illustration of the metal tile profile"></div>
-        <figcaption>
-          <h3>Tile</h3>
-          <p>Available in a wide range of colors.</p>
-        </figcaption>
-      </figure>
+    <p class="expander-key"><span>Stone-chip coated</span> Mistral, Blizzard, Storm, Polar <span>Painted steel tile</span> Tremblant, Estima, Enigma</p>
+
+    <!-- EDIT: one <article class="xp"> per profile. Keep exactly one with "is-active" so a panel is open at rest. -->
+    <div class="expander" role="group" aria-label="Roof profiles in the collection">
+
+      <article class="xp" id="style-mistral">
+        <img class="xp-photo" src="images/products/mistral.jpg" width="677" height="436" loading="lazy" decoding="async" alt="Close view of the Mistral stone-chip surface in black">
+        <button class="xp-tab" type="button" aria-expanded="false" aria-controls="style-mistral-info"><span class="xp-tab-name">Mistral</span></button>
+        <div class="xp-info" id="style-mistral-info">
+          <span class="xp-family">Stone-chip coated</span>
+          <h3>Mistral</h3>
+          <p>A symmetrical, softly waved profile with a Mediterranean character. At its best on regular, classic rooflines.</p>
+          <dl class="xp-specs">
+            <div><dt>Cover width</dt><dd>50 in</dd></div>
+            <div><dt>Minimum pitch</dt><dd>14°</dd></div>
+            <div><dt>Finish</dt><dd>Stone chip</dd></div>
+          </dl>
+          <ul class="xp-swatches" aria-label="Available colors">
+            <li><img src="images/swatches/onyx.png" width="30" height="30" alt=""><span>Onyx</span></li>
+            <li><img src="images/swatches/amber.png" width="30" height="30" alt=""><span>Amber</span></li>
+            <li><img src="images/swatches/hematite.png" width="30" height="30" alt=""><span>Hematite</span></li>
+            <li><img src="images/swatches/jaspis.png" width="30" height="30" alt=""><span>Jaspis</span></li>
+            <li><img src="images/swatches/ruby.png" width="30" height="30" alt=""><span>Ruby</span></li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" data-prefill="I'd like to learn more about the Mistral profile. Property type and approximate size: ">Inquire about Mistral</a>
+        </div>
+        <figure class="xp-detail"><img src="images/products/mistral-detail.jpg" width="677" height="436" loading="lazy" decoding="async" alt="A single Mistral tile showing its wave profile"></figure>
+      </article>
+
+      <article class="xp is-active" id="style-blizzard">
+        <img class="xp-photo" src="images/products/blizzard.jpg" width="677" height="436" loading="lazy" decoding="async" alt="Blizzard stone-chip tile roof in charcoal on a white house">
+        <button class="xp-tab" type="button" aria-expanded="true" aria-controls="style-blizzard-info"><span class="xp-tab-name">Blizzard</span></button>
+        <div class="xp-info" id="style-blizzard-info">
+          <span class="xp-family">Stone-chip coated</span>
+          <h3>Blizzard</h3>
+          <p>A refined stone-chip tile profile, developed with input from roofing professionals and built to last.</p>
+          <dl class="xp-specs">
+            <div><dt>Cover width</dt><dd>47 in</dd></div>
+            <div><dt>Finish</dt><dd>Stone chip</dd></div>
+          </dl>
+          <ul class="xp-swatches" aria-label="Available colors">
+            <li><img src="images/swatches/onyx.png" width="30" height="30" alt=""><span>Onyx</span></li>
+            <li><img src="images/swatches/amber.png" width="30" height="30" alt=""><span>Amber</span></li>
+            <li><img src="images/swatches/hematite.png" width="30" height="30" alt=""><span>Hematite</span></li>
+            <li><img src="images/swatches/jaspis.png" width="30" height="30" alt=""><span>Jaspis</span></li>
+            <li><img src="images/swatches/ruby.png" width="30" height="30" alt=""><span>Ruby</span></li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" data-prefill="I'd like to learn more about the Blizzard profile. Property type and approximate size: ">Inquire about Blizzard</a>
+        </div>
+        <figure class="xp-detail"><img src="images/products/blizzard-detail.jpg" width="677" height="436" loading="lazy" decoding="async" alt="Blizzard roof edge with timber eaves beneath tall pines"></figure>
+      </article>
+
+      <article class="xp" id="style-storm">
+        <img class="xp-photo" src="images/products/storm.jpg" width="677" height="436" loading="lazy" decoding="async" alt="Close view of the deep Storm stone-chip texture">
+        <button class="xp-tab" type="button" aria-expanded="false" aria-controls="style-storm-info"><span class="xp-tab-name">Storm</span></button>
+        <div class="xp-info" id="style-storm-info">
+          <span class="xp-family">Stone-chip coated</span>
+          <h3>Storm</h3>
+          <p>Deep, irregular texture inspired by aspen wood shingles. Made for timber homes, cabins and contemporary architecture, and designed for storm conditions when properly installed.</p>
+          <dl class="xp-specs">
+            <div><dt>Cover width</dt><dd>51.7 in</dd></div>
+            <div><dt>Minimum pitch</dt><dd>14°</dd></div>
+            <div><dt>Finish</dt><dd>Stone chip</dd></div>
+          </dl>
+          <ul class="xp-swatches" aria-label="Available colors">
+            <li><img src="images/swatches/onyx.png" width="30" height="30" alt=""><span>Onyx</span></li>
+            <li><img src="images/swatches/amber.png" width="30" height="30" alt=""><span>Amber</span></li>
+            <li><img src="images/swatches/jade.png" width="30" height="30" alt=""><span>Jade</span></li>
+            <li><img src="images/swatches/hematite.png" width="30" height="30" alt=""><span>Hematite</span></li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" data-prefill="I'd like to learn more about the Storm profile. Property type and approximate size: ">Inquire about Storm</a>
+        </div>
+        <figure class="xp-detail"><img src="images/products/storm-detail.jpg" width="677" height="436" loading="lazy" decoding="async" alt="A single Storm tile showing its shake-like profile"></figure>
+      </article>
+
+      <article class="xp" id="style-polar">
+        <img class="xp-photo" src="images/products/polar.jpg" width="677" height="436" loading="lazy" decoding="async" alt="Polar stone-chip roof on a modern home at dusk">
+        <button class="xp-tab" type="button" aria-expanded="false" aria-controls="style-polar-info"><span class="xp-tab-name">Polar</span></button>
+        <div class="xp-info" id="style-polar-info">
+          <span class="xp-family">Stone-chip coated</span>
+          <h3>Polar</h3>
+          <p>The familiar look of a bitumen shingle, rebuilt in stone-chip steel with a thick, textured surface. Suited to roofs and façades alike, with concealed fasteners.</p>
+          <dl class="xp-specs">
+            <div><dt>Use</dt><dd>Roof &amp; façade</dd></div>
+            <div><dt>Finish</dt><dd>Stone chip</dd></div>
+          </dl>
+          <ul class="xp-swatches" aria-label="Available colors">
+            <li><img src="images/swatches/onyx.png" width="30" height="30" alt=""><span>Onyx</span></li>
+            <li><img src="images/swatches/amber.png" width="30" height="30" alt=""><span>Amber</span></li>
+            <li><img src="images/swatches/hematite.png" width="30" height="30" alt=""><span>Hematite</span></li>
+            <li><img src="images/swatches/jade.png" width="30" height="30" alt=""><span>Jade</span></li>
+            <li><img src="images/swatches/bronzite.png" width="30" height="30" alt=""><span>Bronzite</span></li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" data-prefill="I'd like to learn more about the Polar profile. Property type and approximate size: ">Inquire about Polar</a>
+        </div>
+        <figure class="xp-detail"><img src="images/products/polar-detail.jpg" width="677" height="436" loading="lazy" decoding="async" alt="Polar roof on a two-storey home with large windows"></figure>
+      </article>
+
+      <article class="xp family-start" id="style-tremblant">
+        <img class="xp-photo" src="images/products/tremblant.jpg" width="677" height="436" loading="lazy" decoding="async" alt="Tremblant steel tile roofs on a row of townhouses">
+        <button class="xp-tab" type="button" aria-expanded="false" aria-controls="style-tremblant-info"><span class="xp-tab-name">Tremblant</span></button>
+        <div class="xp-info" id="style-tremblant-info">
+          <span class="xp-family">Painted steel tile</span>
+          <h3>Tremblant</h3>
+          <p>Classic clay tile reinterpreted in solid steel, with a lower profile. Light enough to need no added roof reinforcement.</p>
+          <dl class="xp-specs">
+            <div><dt>Panel</dt><dd>47 × 27.5 in</dd></div>
+            <div><dt>Profile height</dt><dd>1.25 in</dd></div>
+            <div><dt>Per square</dt><dd>11.5</dd></div>
+          </dl>
+          <ul class="xp-swatches xp-swatches--chips" aria-label="Available colors, ThyssenKrupp TK codes">
+            <li title="Green"><i style="background:#214932"></i><span>6020</span></li>
+            <li title="Copper brown"><i style="background:#91533c"></i><span>8004</span></li>
+            <li title="Red"><i style="background:#823d37"></i><span>3009</span></li>
+            <li title="Chocolate brown"><i style="background:#4d3f39"></i><span>8017</span></li>
+            <li title="Grey brown"><i style="background:#2d322a"></i><span>8019</span></li>
+            <li title="Anthracite"><i style="background:#2e353f"></i><span>7016</span></li>
+            <li title="Graphite grey"><i style="background:#4d5057"></i><span>7024</span></li>
+            <li title="Black"><i style="background:#09090b"></i><span>9005</span></li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" data-prefill="I'd like to learn more about the Tremblant profile. Property type and approximate size: ">Inquire about Tremblant</a>
+        </div>
+        <figure class="xp-detail"><img src="images/products/tremblant-detail.jpg" width="677" height="436" loading="lazy" decoding="async" alt="Tremblant tile roof with a hillside view"></figure>
+      </article>
+
+      <article class="xp" id="style-estima">
+        <img class="xp-photo" src="images/products/estima.jpg" width="677" height="436" loading="lazy" decoding="async" alt="Estima steel tile roof on a white house beside pine trees">
+        <button class="xp-tab" type="button" aria-expanded="false" aria-controls="style-estima-info"><span class="xp-tab-name">Estima</span></button>
+        <div class="xp-info" id="style-estima-info">
+          <span class="xp-family">Painted steel tile</span>
+          <h3>Estima</h3>
+          <p>A symmetrical flat tile in a wide choice of colors and coatings, equally at home on simple or complex roofs.</p>
+          <dl class="xp-specs">
+            <div><dt>Panel</dt><dd>47 × 27.5 in</dd></div>
+            <div><dt>Profile height</dt><dd>1.25 in</dd></div>
+            <div><dt>Per square</dt><dd>11.5</dd></div>
+          </dl>
+          <ul class="xp-swatches xp-swatches--chips" aria-label="Available colors, ThyssenKrupp TK codes">
+            <li title="Green"><i style="background:#214932"></i><span>6020</span></li>
+            <li title="Copper brown"><i style="background:#91533c"></i><span>8004</span></li>
+            <li title="Red"><i style="background:#823d37"></i><span>3009</span></li>
+            <li title="Chocolate brown"><i style="background:#4d3f39"></i><span>8017</span></li>
+            <li title="Grey brown"><i style="background:#2d322a"></i><span>8019</span></li>
+            <li title="Anthracite"><i style="background:#2e353f"></i><span>7016</span></li>
+            <li title="Graphite grey"><i style="background:#4d5057"></i><span>7024</span></li>
+            <li title="Black"><i style="background:#09090b"></i><span>9005</span></li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" data-prefill="I'd like to learn more about the Estima profile. Property type and approximate size: ">Inquire about Estima</a>
+        </div>
+        <figure class="xp-detail"><img src="images/products/estima-detail.jpg" width="677" height="436" loading="lazy" decoding="async" alt="Aerial view of an Estima roof with a skylight"></figure>
+      </article>
+
+      <article class="xp" id="style-enigma">
+        <img class="xp-photo" src="images/products/enigma.jpg" width="677" height="436" loading="lazy" decoding="async" alt="Close view of the Enigma wave profile with water droplets">
+        <button class="xp-tab" type="button" aria-expanded="false" aria-controls="style-enigma-info"><span class="xp-tab-name">Enigma</span></button>
+        <div class="xp-info" id="style-enigma-info">
+          <span class="xp-family">Painted steel tile</span>
+          <h3>Enigma</h3>
+          <p>A symmetrical steel tile with an embossed, stiffened profile. Striking in black and brick tones, with a laying pattern adapted to each roof.</p>
+          <dl class="xp-specs">
+            <div><dt>Panel</dt><dd>46 × 27.5 in</dd></div>
+            <div><dt>Profile height</dt><dd>1.25 in</dd></div>
+            <div><dt>Per square</dt><dd>11.5</dd></div>
+          </dl>
+          <ul class="xp-swatches xp-swatches--chips" aria-label="Available colors, ThyssenKrupp TK codes">
+            <li title="Green"><i style="background:#214932"></i><span>6020</span></li>
+            <li title="Copper brown"><i style="background:#91533c"></i><span>8004</span></li>
+            <li title="Red"><i style="background:#823d37"></i><span>3009</span></li>
+            <li title="Chocolate brown"><i style="background:#4d3f39"></i><span>8017</span></li>
+            <li title="Grey brown"><i style="background:#2d322a"></i><span>8019</span></li>
+            <li title="Anthracite"><i style="background:#2e353f"></i><span>7016</span></li>
+            <li title="Graphite grey"><i style="background:#4d5057"></i><span>7024</span></li>
+            <li title="Black"><i style="background:#09090b"></i><span>9005</span></li>
+          </ul>
+          <a href="#contact" class="btn btn-outline" data-prefill="I'd like to learn more about the Enigma profile. Property type and approximate size: ">Inquire about Enigma</a>
+        </div>
+        <figure class="xp-detail"><img src="images/products/enigma-detail.jpg" width="677" height="436" loading="lazy" decoding="async" alt="The Enigma profile catching the light"></figure>
+      </article>
+
     </div>
+    <p class="expander-hint" aria-hidden="true">Hover or tap a panel to explore</p>
 
     <div class="collection-note">
-      <p>Project photography will be added here as installations are completed.</p>
+      <p>Product photography and specifications courtesy of BTR Systems. Specifications are manufacturer-published; please confirm details for your project.</p>
       <a href="#contact" class="btn btn-outline-dark">Begin a Consultation</a>
     </div>
   </div>
