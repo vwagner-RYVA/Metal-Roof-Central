@@ -37,18 +37,17 @@ document.addEventListener('DOMContentLoaded', function () {
   if (expander) {
     var panels = Array.prototype.slice.call(expander.querySelectorAll('.xp'));
     var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
-    var stacked = window.matchMedia('(max-width: 1150px)');
+    var stacked = window.matchMedia('(max-width: 1200px)');
 
-    // In the stacked (phone/tablet) layout the open panel is sized to its content,
-    // so the text never collides with the photo thumbnail whatever the screen width.
+    // In the stacked (phone/tablet) layout the open panel is a photo (kept near the
+    // picture's own proportions) plus a text strip sized to its content.
     // On desktop the inline height is cleared and the CSS flex layout takes over.
     var sizePanels = function () {
       panels.forEach(function (p) {
         if (stacked.matches && p.classList.contains('is-active')) {
           var info = p.querySelector('.xp-info');
-          var thumb = p.querySelector('.xp-detail');
-          var need = info.offsetHeight + 22 + (thumb ? thumb.offsetHeight + 16 : 0) + 28;
-          p.style.height = Math.max(need, 360) + 'px';
+          var photoH = Math.max(230, Math.min(p.clientWidth / 1.55, 440));
+          p.style.height = Math.round(photoH + info.offsetHeight) + 'px';
         } else {
           p.style.height = '';
         }
