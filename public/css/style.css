@@ -1156,6 +1156,93 @@ textarea:-webkit-autofill {
   .faq-answer p { padding-right: 0; }
 }
 
+/* Imagery and decorative details
+   ========================================================================== */
+.hero > .container { position: relative; z-index: 1; }
+.hero-art {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(62%, 880px);
+  z-index: 0;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(ellipse 90% 95% at 100% 25%, #000 15%, transparent 72%);
+  mask-image: radial-gradient(ellipse 90% 95% at 100% 25%, #000 15%, transparent 72%);
+}
+.hero-art img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 30% 50%;
+  filter: brightness(0.5) contrast(1.05);
+}
+
+.band {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: clamp(140px, 17vw, 220px);
+  overflow: hidden;
+  color: var(--platinum);
+  background: var(--ink) var(--band) center / cover no-repeat;
+}
+.band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 11, 12, 0.6), rgba(11, 11, 12, 0.3) 50%, rgba(11, 11, 12, 0.6));
+}
+.band svg { position: relative; display: block; opacity: 0.9; }
+
+.note-panel.has-photo {
+  padding: 0;
+  gap: 0;
+  overflow: hidden;
+  align-items: stretch;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+.note-photo { margin: 0; min-height: 280px; }
+.note-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.note-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: clamp(32px, 4.5vw, 60px);
+}
+
+.care-photo { margin: 0 0 30px; border: 1px solid var(--line); background: var(--ink); }
+.care-photo img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; }
+
+.audience-photo { margin: 0 0 24px; overflow: hidden; aspect-ratio: 16 / 10; background: var(--ink); }
+.audience-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+#contact { position: relative; overflow: hidden; }
+#contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url(../images/products/enigma-detail.jpg) center / cover no-repeat;
+  opacity: 0.08;
+  pointer-events: none;
+}
+#contact > .container { position: relative; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .audience-photo img { transition: transform 1.4s cubic-bezier(0.2, 0.7, 0.2, 1); }
+  @media (hover: hover) {
+    .audience article:hover .audience-photo img { transform: scale(1.04); }
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-art { width: 100%; opacity: 0.5; -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 85%); mask-image: linear-gradient(180deg, #000 0%, transparent 85%); }
+  .note-panel.has-photo { grid-template-columns: 1fr; }
+  .note-photo { min-height: 0; }
+  .note-photo img { aspect-ratio: 16 / 9; height: auto; }
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation: none !important;
