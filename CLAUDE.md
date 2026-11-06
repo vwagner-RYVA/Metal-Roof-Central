@@ -65,10 +65,14 @@ Plain HTML/CSS/JS, no build step, no Node needed.
 - Prefer a branch + pull request for anything non-trivial; check the Cloudflare Pages preview link on the pull request before merging.
 
 ## Status / open items
-- **Custom domain paused**: `metalroofcentral.com` is registered at Namecheap (default
-  nameservers). Waiting on the client's logins. To finish: add the domain to Cloudflare (Free),
-  set Namecheap nameservers to the two Cloudflare ones, attach `www` and the apex as custom
-  domains on the Worker, redirect the apex to `www`, then verify the live site.
+- **Custom domain live (2026-11-06)**: https://www.metalroofcentral.com (canonical) and
+  https://metalroofcentral.com both serve the site. Registered at Namecheap with nameservers
+  pointed to Cloudflare (`matt.ns` / `ziggy.ns`); the zone is in the Vanessawagner@ryvawebservices.com
+  Cloudflare account. Both hostnames are custom domains on the Worker `metal-roof-central`
+  (Worker URL: metal-roof-central.ryvawebservices.workers.dev). The Namecheap parking A/CNAME
+  records were deleted; the Namecheap email-forwarding MX/TXT records were kept on purpose.
+  Optional follow-ups: a Cloudflare Redirect Rule sending the bare domain to www, and removing
+  the now-unused Namecheap "Redirect Domain" row.
 - Parked by the owner (not forgotten): higher-resolution BTR photos, BTR PDFs/catalog links,
   missing Blizzard/Polar spec details, a formal photo credit line, extra fine print.
 - Hero/OG share image: `og-cover.png` is built from the logo; replace if the brand art changes.
