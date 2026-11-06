@@ -155,7 +155,9 @@ p { margin: 0 0 1.1em; color: var(--text-muted); }
   color: var(--white);
   white-space: nowrap;
 }
+.logo { display: inline-flex; align-items: center; gap: 14px; }
 .logo span { color: var(--red-light); }
+.logo-mark { display: block; height: 38px; width: auto; }
 
 .nav-links {
   display: flex;
@@ -982,7 +984,7 @@ textarea:-webkit-autofill {
   color: var(--white);
   margin-bottom: 18px;
 }
-.footer-logo span { color: var(--red-light); }
+.footer-logo img { display: block; width: min(260px, 100%); height: auto; }
 .site-footer p { color: var(--silver); font-size: 0.92rem; max-width: 42ch; }
 .footer-grid h4 {
   font-family: var(--font-body);
@@ -1145,6 +1147,10 @@ textarea:-webkit-autofill {
 
 @media (max-width: 480px) {
   .logo { font-size: 1.1rem; letter-spacing: 0.13em; }
+}
+@media (max-width: 380px) {
+  .logo { font-size: 0.95rem; letter-spacing: 0.08em; gap: 10px; }
+  .logo-mark { height: 30px; }
 }
 
 @media (max-width: 700px) {
