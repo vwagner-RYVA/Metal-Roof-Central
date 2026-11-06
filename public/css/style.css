@@ -26,7 +26,7 @@
 
   --max: 1240px;
   --gutter: clamp(22px, 5vw, 56px);
-  --header-h: 78px;
+  --header-h: 88px;
 }
 
 * { box-sizing: border-box; }
@@ -157,7 +157,7 @@ p { margin: 0 0 1.1em; color: var(--text-muted); }
 }
 .logo { display: inline-flex; align-items: center; gap: 14px; }
 .logo span { color: var(--red-light); }
-.logo-mark { display: block; height: 38px; width: auto; }
+.logo-full { display: block; height: 70px; width: auto; }
 
 .nav-links {
   display: flex;
@@ -1148,9 +1148,8 @@ textarea:-webkit-autofill {
 @media (max-width: 480px) {
   .logo { font-size: 1.1rem; letter-spacing: 0.13em; }
 }
-@media (max-width: 380px) {
-  .logo { font-size: 0.95rem; letter-spacing: 0.08em; gap: 10px; }
-  .logo-mark { height: 30px; }
+@media (max-width: 480px) {
+  .logo-full { height: 60px; }
 }
 
 @media (max-width: 700px) {
