@@ -54,6 +54,25 @@ Plain HTML/CSS/JS, no build step, no Node needed.
   panel to photo + strip. Hover uses `mousemove` (not `mouseenter`) so scrolling doesn't pop panels open.
 - **Accessibility**: target WCAG AA (4.5:1 normal text, 3:1 large). Text on photos needs a solid
   or measured backing. Keep the skip link, `aria-expanded` on gallery tabs, alt text on photos.
+  The FAQ questions are `<h3><button aria-expanded aria-controls>`; closed FAQ answers and the closed
+  mobile menu use `visibility: hidden` so keyboard and screen-reader users skip them. The menu button
+  has `aria-expanded` and Escape closes it. Painted color chips carry a `.visually-hidden` color name.
+  A `forced-colors` block keeps the hero's gradient text visible in Windows High Contrast.
+- **Performance** (Lighthouse 100 accessibility; mobile perf ~94 locally, desktop 100):
+  - Images are **WebP** (`.webp`). The original `.jpg`/`.png` files are kept as source only; the page
+    doesn't load them. New photos: `cwebp -q 80 -m 6 -sharp_yuv in.jpg -o out.webp`.
+    Gallery thumbnails use `*-detail-sm.webp` (320px) via `srcset`; swatches are 64px WebP;
+    the footer logo is `logo-footer.webp` (520px). `og-cover.png` and the icons stay PNG for social and browsers.
+  - The hero uses its own lighter `enigma-hero.webp`, preloaded with `fetchpriority="high"`.
+  - Decorative photos (the two `.band` strips, the faint `.contact-bg`) are lazy `<img>` tags, not CSS
+    backgrounds, so they don't compete with the hero. Keep any new decorative photo lazy the same way.
+  - Google Fonts load non-blocking (`media="print" onload`) and only the weights in use are requested:
+    Cormorant Garamond 300/400/500 + italic 300, Jost 300/400/500. Add a weight to the URL (in
+    `index.html` and `404.html`) if the CSS starts using a new one.
+    Self-hosting the fonts was tested (Nov 2026, compressed, 3 Lighthouse runs each) and scored
+    lower on mobile (94-96 vs 97; first paint 1.1-1.5s vs 0.8s), so they deliberately stay on Google Fonts.
+  - `public/_headers` gives images a 30-day browser cache. **To replace an image, use a new filename.**
+    HTML/CSS/JS are re-checked on every visit, so edits show immediately.
 - **Header height** is the CSS variable `--header-h` (88px); scroll offsets use it.
 - Logo art was supplied on pure black; the site uses transparent PNGs in `public/images/`.
 

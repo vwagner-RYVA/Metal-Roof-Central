@@ -1,0 +1,18 @@
+# Cloudflare cache rules (read by both the Pages project and the Worker's static assets).
+# Images: browsers keep them for 30 days, then refresh in the background.
+#   If you REPLACE an image, give the new file a new name (e.g. storm-v2.webp) so returning
+#   visitors see it right away; a new name is always fetched fresh.
+# HTML, CSS and JS are not listed, so they keep Cloudflare's default (re-checked on every
+#   visit, a cheap "not modified" reply when unchanged), so edits show up immediately.
+
+/images/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=604800
+
+/favicon-32.png
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=604800
+
+/apple-touch-icon.png
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=604800
+
+/og-cover.png
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=604800

@@ -4,9 +4,21 @@ document.addEventListener('DOMContentLoaded', function () {
   // Mobile nav toggle
   var toggle = document.querySelector('.nav-toggle');
   var links = document.querySelector('.nav-links');
+  function setMenu(open) {
+    if (!toggle || !links) return;
+    links.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
   if (toggle && links) {
     toggle.addEventListener('click', function () {
-      links.classList.toggle('open');
+      setMenu(!links.classList.contains('open'));
+    });
+    // Escape closes the menu and puts focus back on the button.
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && links.classList.contains('open')) {
+        setMenu(false);
+        toggle.focus();
+      }
     });
   }
 
@@ -125,20 +137,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Close the mobile nav after tapping an anchor link
   document.querySelectorAll('.nav-links a[href^="#"]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      if (links) links.classList.remove('open');
-    });
+    a.addEventListener('click', function () { setMenu(false); });
   });
 
-  // FAQ accordion
-  document.querySelectorAll('.faq-question').forEach(function (btn) {
+  // FAQ accordion (one answer open at a time; aria-expanded tells screen readers the state)
+  var faqButtons = document.querySelectorAll('.faq-question');
+  faqButtons.forEach(function (btn) {
     btn.addEventListener('click', function () {
       var item = btn.closest('.faq-item');
       var wasOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(function (openItem) {
-        openItem.classList.remove('open');
+      faqButtons.forEach(function (other) {
+        other.closest('.faq-item').classList.remove('open');
+        other.setAttribute('aria-expanded', 'false');
       });
-      if (!wasOpen) item.classList.add('open');
+      if (!wasOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
     });
   });
 

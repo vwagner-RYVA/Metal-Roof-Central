@@ -46,6 +46,20 @@ img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 
 :focus-visible { outline: 2px solid var(--red-light); outline-offset: 3px; }
+main:focus { outline: none; } /* focus target for the skip link only */
+
+/* Read by screen readers, not shown on screen */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 .container {
   max-width: var(--max);
@@ -215,10 +229,11 @@ p { margin: 0 0 1.1em; color: var(--text-muted); }
     gap: 0;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    visibility: hidden; /* keeps the closed menu's links out of the Tab order */
+    transition: max-height 0.3s ease, visibility 0s linear 0.3s;
     border-bottom: 1px solid var(--line-dark);
   }
-  .nav-links.open { max-height: 520px; }
+  .nav-links.open { max-height: 520px; visibility: visible; transition: max-height 0.3s ease, visibility 0s; }
   .nav-links li { border-top: 1px solid var(--line-dark); }
   .nav-links a,
   .nav-links a.nav-cta {
@@ -815,6 +830,7 @@ section[id] { scroll-margin-top: var(--header-h); }
    ========================================================================== */
 .faq-list { border-top: 1px solid var(--ink); }
 .faq-item { border-bottom: 1px solid var(--line); }
+.faq-heading { margin: 0; font-size: inherit; line-height: inherit; text-wrap: wrap; }
 .faq-question {
   width: 100%;
   display: flex;
@@ -850,8 +866,13 @@ section[id] { scroll-margin-top: var(--header-h); }
 .faq-question .plus::before { left: 0; right: 0; top: 7.5px; height: 1px; }
 .faq-question .plus::after { top: 0; bottom: 0; left: 7.5px; width: 1px; }
 .faq-item.open .faq-question .plus::after { transform: scaleY(0); }
-.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
-.faq-item.open .faq-answer { max-height: 800px; }
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  visibility: hidden; /* closed answers are skipped by screen readers and the Tab key */
+  transition: max-height 0.35s ease, visibility 0s linear 0.35s;
+}
+.faq-item.open .faq-answer { max-height: 800px; visibility: visible; transition: max-height 0.35s ease, visibility 0s; }
 .faq-answer p { margin: 0; padding: 0 56px 30px 0; max-width: 78ch; }
 .faq-answer a { color: var(--red); border-bottom: 1px solid currentColor; }
 
@@ -898,7 +919,7 @@ section[id] { scroll-margin-top: var(--header-h); }
   transition: border-color 0.2s ease;
 }
 .form-field textarea { resize: vertical; min-height: 130px; }
-.form-field textarea::placeholder { color: rgba(211, 214, 218, 0.55); }
+.form-field textarea::placeholder { color: rgba(211, 214, 218, 0.72); }
 .form-field select {
   appearance: none;
   -webkit-appearance: none;
@@ -986,7 +1007,7 @@ textarea:-webkit-autofill {
 }
 .footer-logo img { display: block; width: min(260px, 100%); height: auto; }
 .site-footer p { color: var(--silver); font-size: 0.92rem; max-width: 42ch; }
-.footer-grid h4 {
+.footer-grid h2 {
   font-family: var(--font-body);
   font-size: 0.68rem;
   font-weight: 500;
@@ -1191,15 +1212,24 @@ textarea:-webkit-autofill {
   height: clamp(140px, 17vw, 220px);
   overflow: hidden;
   color: var(--platinum);
-  background: var(--ink) var(--band) center / cover no-repeat;
+  background: var(--ink);
+}
+/* A real <img loading="lazy"> instead of a CSS background, so it only downloads near the viewport */
+.band-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .band::before {
   content: "";
   position: absolute;
+  z-index: 1;
   inset: 0;
   background: linear-gradient(180deg, rgba(11, 11, 12, 0.6), rgba(11, 11, 12, 0.3) 50%, rgba(11, 11, 12, 0.6));
 }
-.band svg { position: relative; display: block; opacity: 0.9; }
+.band svg { position: relative; z-index: 2; display: block; opacity: 0.9; }
 
 .note-panel.has-photo {
   padding: 0;
@@ -1225,11 +1255,12 @@ textarea:-webkit-autofill {
 .audience-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
 #contact { position: relative; overflow: hidden; }
-#contact::before {
-  content: "";
+#contact > .contact-bg {
   position: absolute;
   inset: 0;
-  background: url(../images/products/enigma-detail.jpg) center / cover no-repeat;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   opacity: 0.08;
   pointer-events: none;
 }
@@ -1248,6 +1279,17 @@ textarea:-webkit-autofill {
   .note-photo { min-height: 0; }
   .note-photo img { aspect-ratio: 16 / 9; height: auto; }
 }
+/* Windows High Contrast / forced colors: keep gradient-clipped text and drawn icons visible */
+@media (forced-colors: active) {
+  .hero h1 em { background: none; -webkit-text-fill-color: currentColor; }
+  .faq-question .plus::before,
+  .faq-question .plus::after,
+  .scroll-progress { background: CanvasText; }
+  .nav-toggle span { background: ButtonText; }
+  .check-list li::before { border-color: CanvasText; }
+  .xp-swatches i { forced-color-adjust: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation: none !important;
